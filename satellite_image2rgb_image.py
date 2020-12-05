@@ -7,7 +7,7 @@ def satellite_image2rgb_image(satellite_image, bands=[3,2,1], quantiles=[0.001, 
     import numpy as np
     rgb_image = []
     for band in bands:
-        channel = satellite_image[:, :, band].reshape(-1, 1)
+        channel = satellite_image[:, :, band]
         channel_quantiles = np.quantile(channel, quantiles)
         channel = np.clip(channel, *channel_quantiles)
         channel = ((channel - channel.min()) / (channel.max() - channel.min()) * 255)
